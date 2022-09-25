@@ -9,3 +9,7 @@ INFO  | 2022-09-25 22:59:08 | [main] book.AddressBook (AddressBook.java:20) - En
 INFO  | 2022-09-25 22:59:21 | [main] book.AddressBook (AddressBook.java:22) - Enter City: 
 INFO  | 2022-09-25 22:59:32 | [main] book.AddressBook (AddressBook.java:24) - Enter State: 
 INFO  | 2022-09-25 22:59:46 | [main] book.AddressBook (AddressBook.java:26) - Enter Zip Number: 
+INFO  | 2022-09-25 23:00:19 | [main] book.App (App.java:10) - Welcome to Address Book Program
+INFO  | 2022-09-25 23:00:19 | [main] book.AddressBook (AddressBook.java:14) - Enter First name: 
+INFO  | 2022-09-25 23:01:53 | [main] book.App (App.java:10) - Welcome to Address Book Program
+INFO  | 2022-09-25 23:01:53 | [main] book.AddressBook (AddressBook.java:14) - Enter First name: 
