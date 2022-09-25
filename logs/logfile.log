@@ -1,3 +1,11 @@
 INFO  | 2022-09-25 22:12:38 | [main] book.App (App.java:10) - Welcome to Address Book Program
 INFO  | 2022-09-25 22:18:09 | [main] book.App (App.java:10) - Welcome to Address Book Program
 INFO  | 2022-09-25 22:18:35 | [main] book.App (App.java:10) - Welcome to Address Book Program
+INFO  | 2022-09-25 22:58:43 | [main] book.App (App.java:10) - Welcome to Address Book Program
+INFO  | 2022-09-25 22:58:43 | [main] book.AddressBook (AddressBook.java:14) - Enter First name: 
+INFO  | 2022-09-25 22:58:56 | [main] book.AddressBook (AddressBook.java:16) - Enter Last name: 
+INFO  | 2022-09-25 22:59:01 | [main] book.AddressBook (AddressBook.java:18) - Enter phone number: 
+INFO  | 2022-09-25 22:59:08 | [main] book.AddressBook (AddressBook.java:20) - Enter Address: 
+INFO  | 2022-09-25 22:59:21 | [main] book.AddressBook (AddressBook.java:22) - Enter City: 
+INFO  | 2022-09-25 22:59:32 | [main] book.AddressBook (AddressBook.java:24) - Enter State: 
+INFO  | 2022-09-25 22:59:46 | [main] book.AddressBook (AddressBook.java:26) - Enter Zip Number: 
