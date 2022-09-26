@@ -14,3 +14,5 @@ INFO  | 2022-09-25 23:00:19 | [main] book.AddressBook (AddressBook.java:14) - En
 INFO  | 2022-09-25 23:01:53 | [main] book.App (App.java:10) - Welcome to Address Book Program
 INFO  | 2022-09-25 23:01:53 | [main] book.AddressBook (AddressBook.java:14) - Enter First name: 
 INFO  | 2022-09-26 11:52:35 | [main] book.App (App.java:10) - Welcome to Address Book Program
+INFO  | 2022-09-26 12:09:16 | [main] book.App (App.java:10) - Welcome to Address Book Program
+INFO  | 2022-09-26 12:09:16 | [main] book.AddressBook (AddressBook.java:46) - Enter First name: 
