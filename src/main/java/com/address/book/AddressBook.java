@@ -11,16 +11,16 @@ public class AddressBook {
 	private static final Logger logger = LogManager.getLogger(AddressBook.class);
 
 	public void showMainMenu() {
-		logger.info("1. TO Add person");
-		logger.info("2. To edit Contact");
-		logger.info("3. To Delete Contact");
-		logger.info("4. Show all contacts");
-		logger.info("5. Close program");
+		logger.info("2. TO Multiple person");
+		logger.info("3. To edit Contact person");
+		logger.info("4. To Delete Contact person");
+		logger.info("5. Show all contacts person");
+		logger.info("6. Close program");
 		logger.info("Enter 1 to 5 numbers");
 
 		int choice;
 		do {
-			choice = Integer.parseInt(scanner.nextLine());
+			choice =Integer.parseInt(scanner.nextLine());
 			switch (choice) {
 			case 1:
 				creatContact();
@@ -89,7 +89,7 @@ public class AddressBook {
 					String city;
 					String state;
 					int zip;
-					int option = Integer.parseInt(scanner.nextLine());
+					int option =Integer.parseInt(scanner.nextLine());
 					switch (option) {
 					case 1:
 						logger.info("Enter name: ");
