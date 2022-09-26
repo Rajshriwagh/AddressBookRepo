@@ -8,14 +8,15 @@ import org.apache.logging.log4j.Logger;
 public class AddressBook {
 	Scanner scanner = new Scanner(System.in);
 	ArrayList<Contact> contactList = new ArrayList<Contact>();
-	private static final Logger logger = LogManager.getLogger(App.class);
+	private static final Logger logger = LogManager.getLogger(AddressBook.class);
 
 	public void showMainMenu() {
 		logger.info("1. TO Add person");
 		logger.info("2. To edit Contact");
-		logger.info("3. Show all contacts");
-		logger.info("4. Close program");
-		logger.info("Enter 1 to 4 numbers");
+		logger.info("3. To Delete Contact");
+		logger.info("4. Show all contacts");
+		logger.info("5. Close program");
+		logger.info("Enter 1 to 5 numbers");
 
 		int choice;
 		do {
@@ -28,15 +29,18 @@ public class AddressBook {
 				updateContact();
 				break;
 			case 3:
+				deleteContact();
+				break;
+			case 4:
 				logger.info(contactList);
 				System.out.println();
 				showMainMenu();
 				break;
-			case 4:
+			case 5:
 				System.exit(0);
 				break;
 			}
-		} while (choice!=4);
+		} while (choice!=5);
 
 	}
 
@@ -85,7 +89,7 @@ public class AddressBook {
 					String city;
 					String state;
 					int zip;
-				    int option = Integer.parseInt(scanner.nextLine());
+					int option = Integer.parseInt(scanner.nextLine());
 					switch (option) {
 					case 1:
 						logger.info("Enter name: ");
@@ -151,6 +155,28 @@ public class AddressBook {
 
 	public int findContact(Contact contact) {
 		return contactList.indexOf(contact);
+	}
+
+	public void deleteContact() {
+		System.out.print("Enter First name of contact wants to delete : ");
+		String firstNameToFind = scanner.nextLine();
+		System.out.print("Enter Last name of contact wants to delete : ");
+		String LastNameToFind = scanner.nextLine();
+		int matches = 0;
+		for (Contact contact : contactList) {
+			if (contact.getFirstName().equalsIgnoreCase(firstNameToFind)
+					&& contact.getLastName().equalsIgnoreCase(LastNameToFind)) {
+				int index = findContact(contact);
+				contactList.remove(index);
+				System.out.println(contact);
+				showMainMenu();
+				matches++;
+			}
+		}
+		if (matches <= 0) {
+			System.out.println("There is no person with this name");
+			showMainMenu();
+		}
 	}
 
 }
