@@ -3,6 +3,7 @@ package com.address.book;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.Predicate;
+import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,6 +11,8 @@ import org.apache.logging.log4j.Logger;
 public class AddressBook {
 	Scanner scanner = new Scanner(System.in);
 	ArrayList<Contact> contactList = new ArrayList<Contact>();
+	private HashMap<String, ArrayList<Contact>> directoryOfCity = new HashMap<>();
+	private HashMap<String, ArrayList<Contact>> directoryOfState = new HashMap<>();
 	private static final Logger logger = LogManager.getLogger(AddressBook.class);
 
 	// select from menu which operation is to be perform
@@ -19,9 +22,11 @@ public class AddressBook {
 		logger.info("2. To edit Contact person");
 		logger.info("3. To Delete Contact person");
 		logger.info("4. Display all contact person");
-		logger.info("5. Close program");
-		logger.info("6. TO Multiple person");
-		logger.info("Enter number 1 between 6 to select option");
+		logger.info("5. TO Add Multiple Contact");
+		logger.info("6. Close program");
+		logger.info("7. View Person by city");
+		logger.info("8. View Person by state");
+		logger.info("Enter number between 1 to 8 select option");
 		String option;
 		int choice;
 		choice = Integer.parseInt(scanner.nextLine());
@@ -60,9 +65,6 @@ public class AddressBook {
 			}
 			break;
 		case 5:
-			System.exit(0);
-			break;
-		case 6:
 			address.createMultipleContact();
 			logger.info("Want to go to main menu of contact(address book)?");
 			option = scanner.nextLine();
@@ -70,6 +72,19 @@ public class AddressBook {
 				menuOfAddressBook(address);
 			}
 
+			break;
+		case 6:
+			System.exit(0);
+			break;
+		case 7:
+			System.out.print("Enter city for which you want to view person  : ");
+			String city = scanner.nextLine();
+			viewPersonsByCityOrStateDictionary(city, "city");
+			break;
+		case 8:
+			System.out.print("Enter state for which you want to view person  : ");
+			String state = scanner.nextLine();
+			viewPersonsByCityOrStateDictionary(state, "state");
 			break;
 		}
 	}
@@ -95,6 +110,29 @@ public class AddressBook {
 		// check that contact already exist or not if not then add to contact list
 				if (!checkDuplicate(firstName)) {
 					contactList.add(con);
+					if (directoryOfCity.containsKey(city)) {
+						directoryOfCity.entrySet().stream().forEach(entry -> {
+							if (entry.getKey().equalsIgnoreCase(city)) {
+								entry.getValue().add(con);
+							}
+						});
+					} else {
+						ArrayList<Contact> cityPersonList = new ArrayList<>();
+						cityPersonList.add(con);
+						directoryOfCity.put(city, cityPersonList);
+					}
+
+					if (directoryOfState.containsKey(state)) {
+						directoryOfState.entrySet().stream().forEach(entry -> {
+							if (entry.getKey().equalsIgnoreCase(state)) {
+								entry.getValue().add(con);
+							}
+						});
+					} else {
+						ArrayList<Contact> statePersonList = new ArrayList<>();
+						statePersonList.add(con);
+						directoryOfState.put(state, statePersonList);
+					}
 				}
 
 	}
@@ -229,9 +267,20 @@ public class AddressBook {
 			System.out.println("There is no person with this name");
 		}
 	}
+	// search contact for given location in address book.
 	public void getPersonByStateOrCity(String location) {
 		contactList.stream().filter(contact -> {
 			return (contact.getCity().equalsIgnoreCase(location) || contact.getState().equalsIgnoreCase(location));
 		}).forEach(System.out::println);
+	}
+	public void viewPersonsByCityOrStateDictionary(String location, String locationaType) {
+		if (locationaType.equals("city")) {
+			ArrayList<Contact> personByCity = directoryOfCity.get(location);
+			System.out.println(personByCity);
+		}
+		if (locationaType.equals("state")) {
+			ArrayList<Contact> personByState = directoryOfState.get(location);
+			System.out.println(personByState);
+		}
 	}
 }
