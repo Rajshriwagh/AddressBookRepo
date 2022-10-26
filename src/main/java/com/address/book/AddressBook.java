@@ -28,7 +28,7 @@ public class AddressBook {
 		logger.info("6. Close program");
 		logger.info("7. View and count Person by city");
 		logger.info("8. View and count Person by state");
-		logger.info("9. Sort Person by name");
+		logger.info("9. Sort Person by name,city,state and zip");
 		logger.info("Enter number between 1 to 9 select option");
 		String option;
 		int choice;
@@ -90,7 +90,7 @@ public class AddressBook {
 			viewAndCountPersonsByCityOrStateDictionary(state, "state");
 			break;
 		case 9:
-			sortByPersonasName();
+			sortContact();
 			break;
 		}
 	}
@@ -291,9 +291,31 @@ public class AddressBook {
 			System.out.println("number of contact persons i.e. count by state ="+personByState.stream().count());
 		}
 	}
-	public void sortByPersonasName() {
-		ArrayList<Contact> sortedContact= (ArrayList<Contact>) contactList.stream().sorted(Comparator.comparing(Contact::getFirstName))
-				            .collect(Collectors.toList());
-		System.out.println("Sorted Contact List"+sortedContact);
+
+public void sortContact() {
+	System.out.println("1.Sort By name\n" + "2.Sort By City\n" + "3.Sort By State\n" + "4.Sort By Zip\n");
+	String choice = scanner.nextLine();
+	switch (choice) {
+	case "1":
+		ArrayList<Contact> sortedContact = (ArrayList<Contact>) contactList.stream()
+				.sorted(Comparator.comparing(Contact::getFirstName)).collect(Collectors.toList());
+		System.out.println("Sorted Contact List" + sortedContact);
+		break;
+	case "2":
+		ArrayList<Contact> sortedContactByCity = (ArrayList<Contact>) contactList.stream()
+				.sorted(Comparator.comparing(Contact::getCity)).collect(Collectors.toList());
+		System.out.println("Sorted Contact List by city" + sortedContactByCity);
+		break;
+	case "3":
+		ArrayList<Contact> sortedContactByState = (ArrayList<Contact>) contactList.stream()
+				.sorted(Comparator.comparing(Contact::getState)).collect(Collectors.toList());
+		System.out.println("Sorted Contact List by state" + sortedContactByState);
+		break;
+	case "4":
+		ArrayList<Contact> sortedContactByZip = (ArrayList<Contact>) contactList.stream()
+				.sorted(Comparator.comparing(Contact::getZip)).collect(Collectors.toList());
+		System.out.println("Sorted Contact List by zip" + sortedContactByZip);
+		break;
 	}
+}
 }
