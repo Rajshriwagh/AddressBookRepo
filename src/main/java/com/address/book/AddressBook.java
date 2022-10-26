@@ -24,8 +24,8 @@ public class AddressBook {
 		logger.info("4. Display all contact person");
 		logger.info("5. TO Add Multiple Contact");
 		logger.info("6. Close program");
-		logger.info("7. View Person by city");
-		logger.info("8. View Person by state");
+		logger.info("7. View and count Person by city");
+		logger.info("8. View and count Person by state");
 		logger.info("Enter number between 1 to 8 select option");
 		String option;
 		int choice;
@@ -79,12 +79,12 @@ public class AddressBook {
 		case 7:
 			System.out.print("Enter city for which you want to view person  : ");
 			String city = scanner.nextLine();
-			viewPersonsByCityOrStateDictionary(city, "city");
+			viewAndCountPersonsByCityOrStateDictionary(city, "city");
 			break;
 		case 8:
 			System.out.print("Enter state for which you want to view person  : ");
 			String state = scanner.nextLine();
-			viewPersonsByCityOrStateDictionary(state, "state");
+			viewAndCountPersonsByCityOrStateDictionary(state, "state");
 			break;
 		}
 	}
@@ -273,14 +273,16 @@ public class AddressBook {
 			return (contact.getCity().equalsIgnoreCase(location) || contact.getState().equalsIgnoreCase(location));
 		}).forEach(System.out::println);
 	}
-	public void viewPersonsByCityOrStateDictionary(String location, String locationaType) {
+	public void viewAndCountPersonsByCityOrStateDictionary(String location, String locationaType) {
 		if (locationaType.equals("city")) {
 			ArrayList<Contact> personByCity = directoryOfCity.get(location);
 			System.out.println(personByCity);
+			System.out.println("number of contact persons i.e. count by city = "+personByCity.stream().count());
 		}
 		if (locationaType.equals("state")) {
 			ArrayList<Contact> personByState = directoryOfState.get(location);
 			System.out.println(personByState);
+			System.out.println("number of contact persons i.e. count by state ="+personByState.stream().count());
 		}
 	}
 }
