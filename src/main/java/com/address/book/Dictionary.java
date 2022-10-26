@@ -18,8 +18,9 @@ public class Dictionary {
 		logger.info("2. Display all Address books from dictionary");
 		logger.info("3. Delete Address books from dictionary");
 		logger.info("4. Want to access particular address book");
-		logger.info("5. Close program");
-		logger.info("Enter number 1 between 5 select option");
+		logger.info("5. Search Person in city or state");
+		logger.info("6. Close program");
+		logger.info("Enter number 1 between 6 select option");
 
 		int choice;
 		choice = Integer.parseInt(scanner.nextLine());
@@ -39,8 +40,13 @@ public class Dictionary {
 			accessAddressBook();
 			break;
 		case 5:
-			System.exit(0);
+			System.out.print("Enter city or state for you want to search person  : ");
+			String location = scanner.nextLine();
+			searchPersonInCityOrState(location);
 			break;
+		case 6:
+			System.exit(0);
+			break;	
 		}
 	}
 
@@ -86,5 +92,11 @@ public class Dictionary {
 		}
 		menuOfDictionary();
 	}
-
+	public void searchPersonInCityOrState(String location) {
+		dictionaryMap.entrySet().stream().forEach(entry -> {
+			AddressBook address = entry.getValue();
+			address.getPersonByStateOrCity(location);
+		});
+		menuOfDictionary();
+	}
 }

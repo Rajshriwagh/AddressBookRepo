@@ -229,5 +229,9 @@ public class AddressBook {
 			System.out.println("There is no person with this name");
 		}
 	}
-
+	public void getPersonByStateOrCity(String location) {
+		contactList.stream().filter(contact -> {
+			return (contact.getCity().equalsIgnoreCase(location) || contact.getState().equalsIgnoreCase(location));
+		}).forEach(System.out::println);
+	}
 }
