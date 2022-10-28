@@ -15,6 +15,7 @@ public class AddressBook {
 	ArrayList<Contact> contactList = new ArrayList<Contact>();
 	private HashMap<String, ArrayList<Contact>> directoryOfCity = new HashMap<>();
 	private HashMap<String, ArrayList<Contact>> directoryOfState = new HashMap<>();
+	AddressBookFileIOService addressBookFileIOService = new AddressBookFileIOService();
 	private static final Logger logger = LogManager.getLogger(AddressBook.class);
 
 	// select from menu which operation is to be perform
@@ -29,7 +30,9 @@ public class AddressBook {
 		logger.info("7. View and count Person by city");
 		logger.info("8. View and count Person by state");
 		logger.info("9. Sort Person by name,city,state and zip");
-		logger.info("Enter number between 1 to 9 select option");
+		logger.info("10. Write File");
+		logger.info("11. Read File");
+		logger.info("Enter number between 1 to 11 select option");
 		String option;
 		int choice;
 		choice = Integer.parseInt(scanner.nextLine());
@@ -91,6 +94,13 @@ public class AddressBook {
 			break;
 		case 9:
 			sortContact();
+			break;
+		case 10:
+			writeAddressBook();
+            addressBookFileIOService.printData();
+			break;
+		case 11:
+			 readAddressBook();
 			break;
 		}
 	}
@@ -317,5 +327,12 @@ public void sortContact() {
 		System.out.println("Sorted Contact List by zip" + sortedContactByZip);
 		break;
 	}
+}
+public void writeAddressBook() {
+    new AddressBookFileIOService().write(contactList);
+}
+
+public void readAddressBook() {
+	contactList = (ArrayList<Contact>) new AddressBookFileIOService().readData();
 }
 }
